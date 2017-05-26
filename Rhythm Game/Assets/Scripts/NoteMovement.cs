@@ -14,4 +14,15 @@ public class NoteMovement : MonoBehaviour {
 	void Update () {
 		gameObject.transform.Translate (Vector3.back * speed);
 	}
+
+	void OnTriggerEnter(Collider other)
+	{
+
+		if (other.tag == "noteDestroyer") 
+		{
+			Destroy(this.gameObject);
+		}
+
+	}
+
 }
