@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour {
 		}
 
 			noteMark++;
+		if (noteMark > 7) {
+			noteMark = 0;
+		}
 			timerReset = true;
 		Instantiate (noteObj, new Vector3 (xPos, 30.75f, 68.5f), noteObj.rotation);
 	}
