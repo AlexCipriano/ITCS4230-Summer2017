@@ -21,8 +21,14 @@ public class NoteMovement : MonoBehaviour {
 		if (other.tag == "noteDestroyer") 
 		{
 			Destroy(this.gameObject);
+			GameManager.instance.notesMissed++;
 		}
 
+		if (other.tag == "NoteHitter") 
+		{
+			Destroy(this.gameObject);
+			GameManager.instance.notesHit++;
+		}
 	}
 
 }
