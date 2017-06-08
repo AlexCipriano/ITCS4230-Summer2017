@@ -22,6 +22,7 @@ public class NoteMovement : MonoBehaviour {
 		{
 			Destroy(this.gameObject);
 			GameManager.instance.notesMissed++;
+			GameManager.instance.HP = GameManager.instance.HP - 5;
 		}
 
 		if (other.tag == "NoteHitter") 

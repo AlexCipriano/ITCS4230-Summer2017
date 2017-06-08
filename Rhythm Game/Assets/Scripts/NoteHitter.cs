@@ -26,7 +26,7 @@ public class NoteHitter : MonoBehaviour {
 
 	IEnumerator HitterWait()
 	{
-		yield return new WaitForSeconds(.075f);
+		yield return new WaitForSeconds(.1f);
 		hitterCollider.isTrigger = false;
 		hitter.GetComponent<Renderer> ().material.color = inactiveColor;
 	}

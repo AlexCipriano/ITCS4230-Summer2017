@@ -60,3 +60,4 @@ E:\My Games\ITCS4230-Summer2017\Rhythm Game\Temp\bin\Debug\UnityEngine.VR.xml
 E:\My Games\ITCS4230-Summer2017\Rhythm Game\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 E:\My Games\ITCS4230-Summer2017\Rhythm Game\obj\Debug\Assembly-CSharp.dll
 E:\My Games\ITCS4230-Summer2017\Rhythm Game\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Alex\Documents\Developer\Unity Games\Rythm H3ll\ITCS4230-Summer2017\Rhythm Game\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 
 	//Note Fields
+	public float HP;
 	private float[] noteList = new float[] {1,2,3,4,4,3,2,1};
 	private int noteMark = 0;
 	public Transform noteObj;

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HealthBarScript.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\NoteHitter.cs" />
      <Compile Include="Assets\Scripts\NoteMovement.cs" />
