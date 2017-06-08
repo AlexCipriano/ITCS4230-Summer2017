@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour {
 	
 	[SerializeField] private float fillAmount;
-
+	[SerializeField] private float lerpSpeed;
 	[SerializeField] private Image healthBarValue;
 
 	// calculates your current hp as a value between 0 and 1;
@@ -15,18 +15,18 @@ public class HealthBarScript : MonoBehaviour {
 	}
 
 	private void ManageBar() {
-		healthBarValue.fillAmount = mapHP(GameManager.instance.HP, 0f, 100f, 0f , 1f);
+		//if (fillAmount != healthBarValue.fillAmount)
+		healthBarValue.fillAmount = Mathf.Lerp(healthBarValue.fillAmount, mapHP(GameManager.instance.HP, 0f, 100f, 0f , 1f), Time.deltaTime * lerpSpeed);
 	}
 
 	// Use this for initialization
 	void Start () {
-		
+		lerpSpeed = 5f;
+		fillAmount = 1f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		ManageBar ();
-		
+		ManageBar();
 	}
 }
