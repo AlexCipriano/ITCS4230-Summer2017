@@ -22,7 +22,15 @@ public class MusicManager : MonoBehaviour
 	}
 
 	public void PlayMusic(){
-		music.Play();	
+		music.Play();
+	}
+
+	public void PauseMusic(bool pause){
+		if (pause) {
+			music.Pause ();
+		} else {
+			music.UnPause ();
+		}
 	}
 
 	/* 

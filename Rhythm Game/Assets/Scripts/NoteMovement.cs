@@ -11,8 +11,8 @@ public class NoteMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		gameObject.transform.Translate (Vector3.back * speed);
+	void FixedUpdate () {
+		gameObject.transform.Translate (Vector3.back * speed * Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider other)

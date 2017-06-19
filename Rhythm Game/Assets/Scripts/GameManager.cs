@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +21,12 @@ public class GameManager : MonoBehaviour {
 	private bool firstMusicStart = true;
 
 	//Score fields
+	public Text scoreText;
 	public int notesHit {get; set;}
 	public int notesMissed {get; set;}
+
+	//Menu
+	public Transform PauseCanvas;
 
 	void Awake(){
 		if (instance == null) {
@@ -44,8 +49,21 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (spawnNote ());
 			timerReset = false;
 		}
-		//Debug.Log (notesMissed);
-		Debug.Log (notesHit);
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (PauseCanvas.gameObject.activeInHierarchy == false) 
+			{
+				Time.timeScale = 0;
+				MusicManager.instance.PauseMusic (true);
+				PauseCanvas.gameObject.SetActive (true);
+
+			} else {
+				PauseCanvas.gameObject.SetActive (false);		
+				MusicManager.instance.PauseMusic (false);
+				Time.timeScale = 1;
+			}
+		}
+
+		scoreText.text = "Score: " + notesHit;
 	}
 
 	IEnumerator spawnNote(){
