@@ -16,7 +16,7 @@ public class MusicManager : MonoBehaviour
 	}
 
 	public void PlayMusic(){
-		music.Play();
+		music.PlayDelayed(5.1f);
 	}
 
 	public void PauseMusic(bool pause){
