@@ -13,12 +13,6 @@ public class MusicManager : MonoBehaviour
 		}else if(instance != null){
 			Destroy (gameObject);
 		}
-		//DontDestroyOnLoad (gameObject);
-	}
-
-	// Use this for initialization
-	void Start () {
-		//PlaySound = false;
 	}
 
 	public void PlayMusic(){
@@ -33,22 +27,4 @@ public class MusicManager : MonoBehaviour
 		}
 	}
 
-	/* 
-	// Update is called once per frame
-	void Update () {
-		if (PlaySound == true) 
-		{
-			music.Play();
-			PlaySound = false;
-		}
-		if(music.isPlaying == false)
-		{
-			StartCoroutine(Wait());
-		}
-	}
-	IEnumerator Wait()
-	{
-		yield return new WaitForSeconds(2.16f);
-		PlaySound = true;
-	}*/
 }

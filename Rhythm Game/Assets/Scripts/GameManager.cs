@@ -9,26 +9,26 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 
 	//Note Fields
-	private Transform nextnote;
-	public Transform note1;
-	public Transform note2;
-	public Transform note3;
-	public Transform note4;
-	public Transform note12;
-	public Transform note13;
-	public Transform note14;
-	public Transform note23;
-	public Transform note24;
-	public Transform note34;
-	public Transform note123;
-	public Transform note124;
-	public Transform note234;
-	public Transform note1234;
-	public Queue<Transform> notequeue = new Queue<Transform>(150);
+	private int[] nextnote;
+	public Transform note;
+	public Queue<int[]> notequeue = new Queue<int[]>(150);
+	private int[] note1 = new int[] {1};
+	private int[] note2 = new int[] {2};
+	private int[] note3 = new int[] {3};
+	private int[] note4 = new int[] {4};
+	private int[] note12 = new int[] {1,2};
+	private int[] note13 = new int[] {1,3};
+	private int[] note14 = new int[] {1,4};
+	private int[] note23 = new int[] {2,3};
+	private int[] note24 = new int[] {2,4};
+	private int[] note34 = new int[] {3,4};
+	private int[] note123 = new int[] {1,2,3};
+	private int[] note124 = new int[] {1,2,4};
+	private int[] note134 = new int[] {1,3,4};
+	private int[] note234 = new int[] {2,3,4};
+	private int[] note1234 = new int[] {1,2,3,4};
+
 	public float HP;
-	private float[] noteList = new float[] {1,2,3,4,4,3,2,1};
-	private int noteMark = 0;
-	public Transform noteObj;
 	[SerializeField] float noteSpawnRate;
 	private bool timerReset = true;
 	private float xPos;
@@ -48,122 +48,6 @@ public class GameManager : MonoBehaviour {
 	private Time timer;
 	[SerializeField] private Time[] notetimes;
 
-	public void QueueStart () {
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-		notequeue.Enqueue(note1);
-		notequeue.Enqueue(note2);
-		notequeue.Enqueue(note3);
-		notequeue.Enqueue(note4);
-		notequeue.Enqueue(note12);
-		notequeue.Enqueue(note13);
-		notequeue.Enqueue(note14);
-		notequeue.Enqueue(note23);
-		notequeue.Enqueue(note24);
-		notequeue.Enqueue(note34);
-		notequeue.Enqueue(note123);
-		notequeue.Enqueue(note124);
-		notequeue.Enqueue(note234);
-		notequeue.Enqueue(note1234);
-
-	}
-
 	void Awake(){
 		if (instance == null) {
 			instance = this;
@@ -175,7 +59,11 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		QueueStart ();
+		Song1QueueStart();
+		timerReset = true;
+		PauseCanvas.gameObject.SetActive (false);		
+		MusicManager.instance.PauseMusic (false);
+		Time.timeScale = 1;
 	}
 	
 	// Update is called once per frame
@@ -204,28 +92,304 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator spawnNote(){
 		yield return new WaitForSeconds(noteSpawnRate);
-
-//		if (noteList [noteMark] == 1) {
-//			xPos = -3f;
-//		}else if(noteList [noteMark] == 2){
-//			xPos = -1f;
-//		}else if(noteList [noteMark] == 3){
-//			xPos = 1f;
-//		}else if(noteList [noteMark] == 4){
-//			xPos = 3f;
-//		}
-//		noteMark++;
-
 		if(firstMusicStart){
 			MusicManager.instance.PlayMusic();
 			firstMusicStart = false;
 		}
-		if (noteMark > 7) {
-			noteMark = 0;
-		}
-			timerReset = true;
+
+		timerReset = true;
 		nextnote = notequeue.Dequeue ();
-		Instantiate (nextnote, nextnote.position, noteObj.rotation);
+		for (int i = 0; i < nextnote.Length; i++) {
+			switch (nextnote [i]) {
+				case 1:
+					xPos = -3f;
+					Instantiate (note, new Vector3(xPos ,30.75f, 68.5f), note.rotation);
+					break;
+				case 2:
+					xPos = -1f;
+					Instantiate (note, new Vector3(xPos ,30.75f, 68.5f), note.rotation);
+					break;
+				case 3:
+					xPos = 1f;
+					Instantiate (note, new Vector3(xPos ,30.75f, 68.5f), note.rotation);
+					break;
+				case 4:
+					xPos = 3f;
+					Instantiate (note, new Vector3(xPos ,30.75f, 68.5f), note.rotation);
+					break;
+			}
+		}
+
+	}
+
+
+	public void Song1QueueStart () {
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note1);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note1);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note1);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note1);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note2);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note3);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note4);
+		notequeue.Enqueue(note13);
+
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note14);
+
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note13);
+
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note12);
+
+		notequeue.Enqueue(note123);
+		notequeue.Enqueue(note124);
+		notequeue.Enqueue(note134);
+		notequeue.Enqueue(note234);
+
+		notequeue.Enqueue(note123);
+		notequeue.Enqueue(note124);
+		notequeue.Enqueue(note134);
+		notequeue.Enqueue(note234);
+
+		notequeue.Enqueue(note123);
+		notequeue.Enqueue(note124);
+		notequeue.Enqueue(note134);
+		notequeue.Enqueue(note234);
+
+		notequeue.Enqueue(note123);
+		notequeue.Enqueue(note124);
+		notequeue.Enqueue(note134);
+		notequeue.Enqueue(note234);
+
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note24);
+
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note23);
+
+		notequeue.Enqueue(note24);
+		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note34);
+		notequeue.Enqueue(note134);
+
+		notequeue.Enqueue(note23);
+		notequeue.Enqueue(note14);
+		notequeue.Enqueue(note13);
+		notequeue.Enqueue(note1234);
 	}
 }
 
