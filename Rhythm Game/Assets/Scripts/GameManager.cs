@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour {
 	//Score fields
 	public Text scoreText;
 	public Text HPText;
+	public Text ComboText;
+	public int comboCounter;
 	public int notesHit {get; set;}
 	public int notesMissed {get; set;}
 
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour {
 		Song1QueueStart();
 		Song1NoteTimes ();
 		timerReset = true;
+		comboCounter = 0;
 		gamemusic = MusicManager.instance.GetComponent<AudioSource>();
 		PauseCanvas.gameObject.SetActive (false);		
 		MusicManager.instance.PauseMusic (false);
@@ -92,7 +95,16 @@ public class GameManager : MonoBehaviour {
 		}
 
 		scoreText.text = "Score: " + notesHit;
+
+		if (instance.HP >= 100) {
+			instance.HP = 100;
+		}
+		if (instance.HP <= 0) {
+			instance.HP = 0;
+		}
+		ComboText.text = "Combo: " + instance.comboCounter;
 		HPText.text = "HP: " + instance.HP;
+
 	}
 		
 	IEnumerator SyncToAudio(){
@@ -135,6 +147,7 @@ public class GameManager : MonoBehaviour {
 			}
 		} 
 	}
+
 
 	public void Song1QueueStart () {
 		notequeue.Enqueue(note1);
@@ -224,6 +237,9 @@ public class GameManager : MonoBehaviour {
 		notequeue.Enqueue(note12);
 		notequeue.Enqueue(note1);
 		notequeue.Enqueue(note12);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
+		notequeue.Enqueue(note1);
 
 		notequeue.Enqueue(note1);
 		notequeue.Enqueue(note2);
@@ -406,8 +422,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void Song1NoteTimes () {
-		notetimes = new float[235];
-		notetimes[0] = 0f ;
+		notetimes = new float[225];
+		notetimes[0] = 0.01f ;
 		notetimes[1] = 0.46f ;
 		notetimes[2] = 0.70f ;
 		notetimes[3] = 1.17f ;
@@ -512,57 +528,131 @@ public class GameManager : MonoBehaviour {
 		notetimes[102] = 43.59f ;
 		notetimes[103] = 43.82f ;
 		notetimes[104] = 45.00f ;
-		notetimes[105] = 0f ;
-		notetimes[106] = 0f ;
-		notetimes[107] = 0f ;
-		notetimes[108] = 0f ;
-		notetimes[109] = 0f ;
-		notetimes[110] = 0f ;
-		notetimes[111] = 0f ;
-		notetimes[112] = 0f ;
-		notetimes[113] = 0f ;
-		notetimes[114] = 0f ;
-		notetimes[115] = 0f ;
-		notetimes[116] = 0f ;
-		notetimes[117] = 0f ;
-		notetimes[118] = 0f ;
-		notetimes[119] = 0f ;
-		notetimes[120] = 0f ;
-		notetimes[121] = 0f ;
-		notetimes[122] = 0f ;
-		notetimes[123] = 0f ;
-		notetimes[124] = 0f ;
-		notetimes[125] = 0f ;
-		notetimes[126] = 0f ;
-		notetimes[127] = 0f ;
-		notetimes[128] = 0f ;
-		notetimes[129] = 0f ;
-		notetimes[130] = 0f ;
-		notetimes[131] = 0f ;
-		notetimes[132] = 0f ;
-		notetimes[133] = 0f ;
-		notetimes[134] = 0f ;
-		notetimes[135] = 0f ;
-		notetimes[136] = 0f ;
-		notetimes[137] = 0f ;
-		notetimes[138] = 0f ;
-		notetimes[139] = 0f ;
-		notetimes[140] = 0f ;
-		notetimes[141] = 0f ;
-		notetimes[142] = 0f ;
-		notetimes[143] = 0f ;
-		notetimes[144] = 0f ;
-		notetimes[145] = 0f ;
-		notetimes[146] = 0f ;
-		notetimes[147] = 0f ;
-		notetimes[148] = 0f ;
-		notetimes[149] = 0f ;
-		notetimes[150] = 0f ;
-		notetimes[151] = 0f ;
-		notetimes[152] = 0f ;
-		notetimes[153] = 0f ;
-		notetimes[154] = 0f ;
-		notetimes[155] = 0f ;
+		notetimes[105] = 45.46f ;
+		notetimes[106] = 45.72f ;
+		notetimes[107] = 45.95f ;
+		notetimes[108] = 46.42f ;
+		notetimes[109] = 46.66f ;
+		notetimes[110] = 46.89f ;
+		notetimes[111] = 47.36f ;
+		notetimes[112] = 47.59f ;
+		notetimes[113] = 47.83f ;
+		notetimes[114] = 48.30f ;
+		notetimes[115] = 48.53f ;
+		notetimes[116] = 48.77f ;
+		notetimes[117] = 49.32f ;
+		notetimes[118] = 49.47f ;
+		notetimes[119] = 50.17f ;
+		notetimes[120] = 50.41f ;
+		notetimes[121] = 50.64f ;
+		notetimes[122] = 51.11f ;
+		notetimes[123] = 51.34f ;
+		notetimes[124] = 51.48f ;
+		notetimes[125] = 52.05f ;
+		notetimes[126] = 52.28f ;
+		notetimes[127] = 52.50f ;
+		notetimes[128] = 52.96f ;
+		notetimes[129] = 53.20f ;
+		notetimes[130] = 53.43f ;
+		notetimes[131] = 53.90f ;
+		notetimes[132] = 54.14f ;
+		notetimes[133] = 54.37f ;
+		notetimes[134] = 54.84f ;
+		notetimes[135] = 55.07f ;
+		notetimes[136] = 56.01f ;
+		notetimes[137] = 56.25f ;
+		notetimes[138] = 56.71f ;
+		notetimes[139] = 56.95f ;
+		notetimes[140] = 57.18f ;
+		notetimes[141] = 57.42f ;
+		notetimes[142] = 57.65f ;
+		notetimes[143] = 57.89f ;
+		notetimes[144] = 58.12f ;
+		notetimes[145] = 58.59f ;
+		notetimes[146] = 58.82f ;
+		notetimes[147] = 59.06f ;
+		notetimes[148] = 59.53f ;
+		notetimes[149] = 59.76f ;
+		notetimes[150] = 60.00f ;
+		notetimes[151] = 60.46f ;
+		notetimes[152] = 60.70f ;
+		notetimes[153] = 60.93f ;
+		notetimes[154] = 61.40f ;
+		notetimes[155] = 61.64f ;
+		notetimes[156] = 61.87f ;
+		notetimes[157] = 62.34f ;
+		notetimes[158] = 62.57f ;
+		notetimes[159] = 62.81f ;
+		notetimes[160] = 63.28f ;
+		notetimes[161] = 63.51f ;
+		notetimes[162] = 63.75f ;
+		notetimes[163] = 64.21f ;
+		notetimes[164] = 64.45f ;
+		notetimes[165] = 64.68f ;
+		notetimes[166] = 65.15f ;
+		notetimes[167] = 65.39f ;
+		notetimes[168] = 65.62f ;
+		notetimes[169] = 66.09f ;
+		notetimes[170] = 66.32f ;
+		notetimes[171] = 66.56f ;
+		notetimes[172] = 67.03f ;
+		notetimes[173] = 67.26f ;
+		notetimes[174] = 67.50f ;
+		notetimes[175] = 67.96f ;
+		notetimes[176] = 68.43f ;
+		notetimes[177] = 68.90f ;
+		notetimes[178] = 69.37f ;
+		notetimes[179] = 69.84f ;
+		notetimes[180] = 70.31f ;
+		notetimes[181] = 70.78f ;
+		notetimes[182] = 71.25f ;
+		notetimes[183] = 71.71f ;
+		notetimes[184] = 72.18f ;
+		notetimes[185] = 72.65f ;
+		notetimes[186] = 73.12f ;
+		notetimes[187] = 73.59f ;
+		notetimes[188] = 74.06f ;
+		notetimes[189] = 74.29f ;
+		notetimes[190] = 74.53f ;
+		notetimes[191] = 74.64f ;
+		notetimes[192] = 74.76f ;
+		notetimes[193] = 75.00f ;
+		notetimes[194] = 75.46f ;
+		notetimes[195] = 75.93f ;
+		notetimes[196] = 76.40f ;
+		notetimes[197] = 76.87f ;
+		notetimes[198] = 77.34f ;
+		notetimes[199] = 77.81f ;
+		notetimes[200] = 78.28f ;
+		notetimes[201] = 78.75f ;
+		notetimes[202] = 79.21f ;
+		notetimes[203] = 79.68f ;
+		notetimes[204] = 80.15f ;
+		notetimes[205] = 80.62f ;
+		notetimes[206] = 81.09f ;
+		notetimes[207] = 81.56f ;
+		notetimes[208] = 82.03f ;
+		notetimes[209] = 82.50f ;
+		notetimes[210] = 82.96f ;
+		notetimes[211] = 83.43f ;
+		notetimes[212] = 83.90f ;
+		notetimes[213] = 84.37f ;
+		notetimes[214] = 84.84f ;
+		notetimes[215] = 85.31f ;
+		notetimes[216] = 85.78f ;
+		notetimes[217] = 86.25f ;
+		notetimes[218] = 86.71f ;
+		notetimes[219] = 87.18f ;
+		notetimes[220] = 87.65f ;
+		notetimes[221] = 88.12f ;
+		notetimes[222] = 88.59f ;
+		notetimes[223] = 89.06f ;
+		notetimes[224] = 89.53f ;
+
+
+
+
+
 
 
 

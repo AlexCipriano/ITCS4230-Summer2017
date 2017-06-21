@@ -18,18 +18,18 @@ public class NoteMovement : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 
-		if (other.tag == "noteDestroyer") 
-		{
-			Destroy(this.gameObject);
+		if (other.tag == "noteDestroyer") {
+			Destroy (this.gameObject);
 			GameManager.instance.notesMissed++;
 			GameManager.instance.HP = GameManager.instance.HP - 5;
+			GameManager.instance.comboCounter = 0;
 		}
 
-		if (other.tag == "NoteHitter") 
-		{
-			Destroy(this.gameObject);
+		if (other.tag == "NoteHitter") {
+			Destroy (this.gameObject);
 			GameManager.instance.notesHit++;
+			GameManager.instance.comboCounter++;
+
+			}
 		}
 	}
-
-}
