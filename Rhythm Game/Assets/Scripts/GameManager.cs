@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour {
 	private bool firstMusicStart = true;
 
 	//Score fields
+	private bool healed;
 	public Text scoreText;
 	public Text HPText;
 	public Text ComboText;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour {
 		Song1QueueStart();
 		Song1NoteTimes ();
 		timerReset = true;
+		healed = false;
 		comboCounter = 0;
 		gamemusic = MusicManager.instance.GetComponent<AudioSource>();
 		PauseCanvas.gameObject.SetActive (false);		
@@ -95,6 +97,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 		scoreText.text = "Score: " + notesHit;
+		if (comboCounter >= 30 && comboCounter % 30 == 0 && healed == false) {
+			instance.HP = instance.HP + 5;
+			healed = true;
+		} else {
+			healed = false;
+		}
 
 		if (instance.HP >= 100) {
 			instance.HP = 100;
