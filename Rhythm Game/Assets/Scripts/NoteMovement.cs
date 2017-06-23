@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteMovement : MonoBehaviour {
 
 	public float speed;
+	private ParticleSystem hitnote;
 	// Use this for initialization
 	void Start () {
 		
@@ -25,11 +26,33 @@ public class NoteMovement : MonoBehaviour {
 			GameManager.instance.comboCounter = 0;
 		}
 
-		if (other.tag == "NoteHitter") {
+		if (other.tag == "NoteHitter1") {
 			Destroy (this.gameObject);
+			GameManager.instance.notehit1.Play();
 			GameManager.instance.notesHit++;
 			GameManager.instance.comboCounter++;
 
 			}
+		if (other.tag == "NoteHitter2") {
+			Destroy (this.gameObject);
+			GameManager.instance.notehit2.Play();
+			GameManager.instance.notesHit++;
+			GameManager.instance.comboCounter++;
+
+		}
+		if (other.tag == "NoteHitter3") {
+			Destroy (this.gameObject);
+			GameManager.instance.notehit3.Play();
+			GameManager.instance.notesHit++;
+			GameManager.instance.comboCounter++;
+
+		}
+		if (other.tag == "NoteHitter4") {
+			Destroy (this.gameObject);
+			GameManager.instance.notehit4.Play();
+			GameManager.instance.notesHit++;
+			GameManager.instance.comboCounter++;
+
+		}
 		}
 	}

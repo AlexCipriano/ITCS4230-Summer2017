@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour {
 	//Note Fields
 	private int[] nextnote;
 	public Transform note;
+	public ParticleSystem notehit1;
+	public ParticleSystem notehit2;
+	public ParticleSystem notehit3;
+	public ParticleSystem notehit4;
 	private int k = 0;
 	public Queue<int[]> notequeue = new Queue<int[]>(150);
 	private int[] note1 = new int[] {1};
@@ -100,7 +104,8 @@ public class GameManager : MonoBehaviour {
 		if (comboCounter >= 30 && comboCounter % 30 == 0 && healed == false) {
 			instance.HP = instance.HP + 5;
 			healed = true;
-		} else {
+		} 
+		if (comboCounter % 30 == 1 && healed == true) {
 			healed = false;
 		}
 
