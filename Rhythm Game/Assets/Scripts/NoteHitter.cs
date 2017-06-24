@@ -7,7 +7,8 @@ public class NoteHitter : MonoBehaviour {
 	private Collider hitterCollider;
 	private Color activeColor = Color.red;
 	private Color inactiveColor = Color.blue;
-	[SerializeField] KeyCode hitKey;
+	[SerializeField] private KeyCode hitKey;
+	[SerializeField] private ParticleSystem hitnote;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,16 @@ public class NoteHitter : MonoBehaviour {
 			hitterCollider.isTrigger = true;
 			hitter.GetComponent<Renderer> ().material.color = activeColor;
 			StartCoroutine ("HitterWait");
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+
+		if (other.tag == "Note") {
+			hitnote.Play();
+			GameManager.instance.notesHit++;
+			GameManager.instance.comboCounter++;
+
 		}
 	}
 

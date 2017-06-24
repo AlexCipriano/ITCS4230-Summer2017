@@ -8,7 +8,7 @@ public class NoteMovement : MonoBehaviour {
 	private ParticleSystem hitnote;
 	// Use this for initialization
 	void Start () {
-		
+		hitnote = this.GetComponentInChildren<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
@@ -26,33 +26,8 @@ public class NoteMovement : MonoBehaviour {
 			GameManager.instance.comboCounter = 0;
 		}
 
-		if (other.tag == "NoteHitter1") {
+		if (other.tag == "NoteHitter") {
 			Destroy (this.gameObject);
-			GameManager.instance.notehit1.Play();
-			GameManager.instance.notesHit++;
-			GameManager.instance.comboCounter++;
-
-			}
-		if (other.tag == "NoteHitter2") {
-			Destroy (this.gameObject);
-			GameManager.instance.notehit2.Play();
-			GameManager.instance.notesHit++;
-			GameManager.instance.comboCounter++;
-
-		}
-		if (other.tag == "NoteHitter3") {
-			Destroy (this.gameObject);
-			GameManager.instance.notehit3.Play();
-			GameManager.instance.notesHit++;
-			GameManager.instance.comboCounter++;
-
-		}
-		if (other.tag == "NoteHitter4") {
-			Destroy (this.gameObject);
-			GameManager.instance.notehit4.Play();
-			GameManager.instance.notesHit++;
-			GameManager.instance.comboCounter++;
-
-		}
 		}
 	}
+}
