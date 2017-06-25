@@ -5,10 +5,9 @@ using UnityEngine;
 public class NoteMovement : MonoBehaviour {
 
 	public float speed;
-	private ParticleSystem hitnote;
 	// Use this for initialization
 	void Start () {
-		hitnote = this.GetComponentInChildren<ParticleSystem> ();
+		
 	}
 	
 	// Update is called once per frame

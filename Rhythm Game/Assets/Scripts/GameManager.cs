@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
 	public ParticleSystem notehit2;
 	public ParticleSystem notehit3;
 	public ParticleSystem notehit4;
-	private int k = 0;
 	public Queue<int[]> notequeue = new Queue<int[]>(150);
 	private int[] note1 = new int[] {1};
 	private int[] note2 = new int[] {2};
@@ -54,6 +53,8 @@ public class GameManager : MonoBehaviour {
 
 	//Menu
 	public Transform PauseCanvas;
+	public Transform GameOverLose;
+	public Transform GameOverWin;
 
 	//Timer
 	[SerializeField] private float[] notetimes;
@@ -118,8 +119,27 @@ public class GameManager : MonoBehaviour {
 		ComboText.text = "Combo: " + instance.comboCounter;
 		HPText.text = "HP: " + instance.HP;
 
+		if (instance.HP <= 0) {
+			Time.timeScale = 0;
+			MusicManager.instance.PauseMusic (true);
+			GameOverLose.gameObject.SetActive (true);
+		}
+		print (notequeue.Count);
+		if (notequeue.Count <= 6) {
+			StartCoroutine (WinGame());
+		}
+
+		//only for testing
+		instance.HP = 100;
+	}	
+
+	IEnumerator WinGame(){
+		yield return new WaitForSeconds (6);
+		Time.timeScale = 0;
+		MusicManager.instance.PauseMusic (true);
+		GameOverWin.gameObject.SetActive (true);
 	}
-		
+
 	IEnumerator SyncToAudio(){
 		if(firstMusicStart){
 			MusicManager.instance.PlayMusic();
@@ -131,11 +151,14 @@ public class GameManager : MonoBehaviour {
 			if (HP == 0) {
 				yield return 0;
 			}
+
 			float nSample = notetimes [k] * gamemusic.clip.frequency;
-			print (nSample - 5.1f);
+			//print (nSample - 5.1f);
+
 			while (gamemusic.timeSamples < nSample) {
 					yield return 0; 
-				}
+			}
+
 			nextnote = notequeue.Dequeue ();
 
 			for (int i = 0; i < nextnote.Length; i++) {
@@ -425,6 +448,8 @@ public class GameManager : MonoBehaviour {
 
 		notequeue.Enqueue(note24);
 		notequeue.Enqueue(note12);
+
+		//following notes are never played
 		notequeue.Enqueue(note34);
 		notequeue.Enqueue(note134);
 
