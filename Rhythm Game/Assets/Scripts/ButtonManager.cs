@@ -17,7 +17,7 @@ public class ButtonManager : MonoBehaviour {
 	public void StartGameBtn(string newGameLevel)
 	{
 		MainStartButton.gameObject.SetActive (false);
-		TutorialButton.gameObject.SetActive(false);
+		//TutorialButton.gameObject.SetActive(false);
 
 		SongOneButton.gameObject.SetActive(true);
 		SongTwoButton.gameObject.SetActive(true);

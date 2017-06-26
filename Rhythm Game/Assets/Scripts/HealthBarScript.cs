@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour {
 	
-	[SerializeField] private float fillAmount;
 	[SerializeField] private float lerpSpeed;
 	[SerializeField] private Image healthBarValue;
 
@@ -22,7 +21,6 @@ public class HealthBarScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lerpSpeed = 5f;
-		fillAmount = 1f;
 	}
 	
 	// Update is called once per frame

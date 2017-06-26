@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] float noteSpawnRate;
 	private bool timerReset;
 	private float xPos;
+	public bool godMode = false;
 
 	//Music fields
 	//private AudioSource music;
@@ -80,6 +81,13 @@ public class GameManager : MonoBehaviour {
 			timerReset = false;
 		}
 
+		if (Input.GetKeyDown (KeyCode.BackQuote)) {
+			if (!godMode) {
+				godMode = true;
+			} else {
+				godMode = false;
+			}
+		}
 		//checks for pause
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			if (PauseCanvas.gameObject.activeInHierarchy == false) 
@@ -107,12 +115,12 @@ public class GameManager : MonoBehaviour {
 			healed = false;
 		}
 
-		if (instance.HP >= 100) {
+		if (godMode || instance.HP >= 100) 
 			instance.HP = 100;
-		}
-		if (instance.HP <= 0) {
+		
+		if (instance.HP <= 0) 
 			instance.HP = 0;
-		}
+
 		ComboText.text = "Combo: " + instance.comboCounter;
 		HPText.text = "HP: " + instance.HP;
 
