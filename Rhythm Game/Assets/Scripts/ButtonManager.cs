@@ -5,12 +5,28 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour {
 
-	public Transform PauseCanvas;
+	[SerializeField] public Transform PauseCanvas;
+	[SerializeField] public Transform MainStartButton;
+	[SerializeField] public Transform TutorialButton;
+	[SerializeField] public Transform SongOneButton;
+	[SerializeField] public Transform SongTwoButton;
 
+
+	public string songSelected;
 
 	public void StartGameBtn(string newGameLevel)
 	{
-		SceneManager.LoadScene (newGameLevel);
+		MainStartButton.gameObject.SetActive (false);
+		TutorialButton.gameObject.SetActive(false);
+
+		SongOneButton.gameObject.SetActive(true);
+		SongTwoButton.gameObject.SetActive(true);
+	}
+
+	public void SelectSongBtn(string songName)
+	{
+		GameSettings.instance.songSelected = songName;
+		SceneManager.LoadScene ("MainGame");
 	}
 
 	public void StartTutorialBtn(string newGameLevel)
