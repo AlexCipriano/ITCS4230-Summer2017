@@ -8,7 +8,7 @@ public class ResourceManager : MonoBehaviour {
 	private string [] uniqueNoteAndTime;
 	public static ResourceManager instance;
 
-	public Queue<int[]> noteQueue = new Queue<int[]>(270);
+	public Queue<int[]> noteQueue;
 	public float[] notetimes;
 
 	private int[] note1 = new int[] {1};
@@ -40,6 +40,7 @@ public class ResourceManager : MonoBehaviour {
 		TextAsset textAssets = (TextAsset)Resources.Load (fileName);
 		noteTimePairs = textAssets.text.Split('#');
 		notetimes = new float[noteTimePairs.Length];
+		noteQueue = new Queue<int[]> (noteTimePairs.Length);
 
 		for(int i = 0; i < noteTimePairs.Length - 1; i++){
 			uniqueNoteAndTime = noteTimePairs[i].Split ('*');

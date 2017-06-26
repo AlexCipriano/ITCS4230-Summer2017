@@ -19,13 +19,13 @@ public class GameManager : MonoBehaviour {
 
 	public float HP;
 	[SerializeField] float noteSpawnRate;
-	private bool timerReset = true;
+	private bool timerReset;
 	private float xPos;
 
 	//Music fields
-	private AudioSource music;
+	//private AudioSource music;
 	public string songFileName;
-	[SerializeField] private AudioSource gamemusic;
+	private AudioSource gamemusic;
 	private bool firstMusicStart = true;
 
 	//Score fields
@@ -54,12 +54,12 @@ public class GameManager : MonoBehaviour {
 		}else if(instance != null){
 			Destroy (gameObject);
 		}
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () {		
 		//print (GameSettings.instance.songSelected);
 		ResourceManager.instance.GetSong(GameSettings.instance.songSelected);//Song1BeatMap
 
@@ -115,12 +115,12 @@ public class GameManager : MonoBehaviour {
 		}
 		ComboText.text = "Combo: " + instance.comboCounter;
 		HPText.text = "HP: " + instance.HP;
-		WinText.text = "You win!\n" + maxCombo + "\n" + scoreText + "\n" + "Total notes hit: " + notesHit;
-		loseText.text = "Sorry, You lost!\n" + maxCombo + "\n" + scoreText;
+
 		//lose scenario
 		if (instance.HP <= 0) {
 			Time.timeScale = 0;
 			MusicManager.instance.PauseMusic (true);
+			loseText.text = "Sorry, You lost!\n" + maxCombo + "\n" + scoreText;
 			GameOverLose.gameObject.SetActive (true);
 		}
 
@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (10);
 		Time.timeScale = 0;
 		MusicManager.instance.PauseMusic (true);
+		WinText.text = "You win!\n" + maxCombo + "\n" + scoreText + "\n" + "Total notes hit: " + notesHit;
 		GameOverWin.gameObject.SetActive (true);
 	}
 
