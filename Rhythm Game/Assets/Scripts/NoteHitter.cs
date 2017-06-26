@@ -31,6 +31,9 @@ public class NoteHitter : MonoBehaviour {
 			hitnote.Play();
 			GameManager.instance.notesHit++;
 			GameManager.instance.comboCounter++;
+			if (GameManager.instance.comboCounter > GameManager.instance.maxCombo) {
+				GameManager.instance.maxCombo = GameManager.instance.comboCounter;
+			}
 
 		}
 	}

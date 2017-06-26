@@ -33,7 +33,10 @@ public class GameManager : MonoBehaviour {
 	public Text scoreText;
 	public Text HPText;
 	public Text ComboText;
+	public Text WinText;
+	public Text loseText;
 	public int comboCounter;
+	public int maxCombo;
 	public int notesHit {get; set;}
 	public int notesMissed {get; set;}
 
@@ -112,7 +115,8 @@ public class GameManager : MonoBehaviour {
 		}
 		ComboText.text = "Combo: " + instance.comboCounter;
 		HPText.text = "HP: " + instance.HP;
-
+		WinText.text = "You win!\n" + maxCombo + "\n" + scoreText + "\n" + "Total notes hit: " + notesHit;
+		loseText.text = "Sorry, You lost!\n" + maxCombo + "\n" + scoreText;
 		//lose scenario
 		if (instance.HP <= 0) {
 			Time.timeScale = 0;
@@ -125,8 +129,6 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (WinGame());
 		}
 
-		//only for testing
-		instance.HP = 100;
 	}	
 
 	//after notes stop spawning, waits for notes to clear then shows win screen
